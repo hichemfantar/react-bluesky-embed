@@ -18,6 +18,18 @@ For documentation visit [react-bluesky-embed.vercel.app](https://react-bluesky-e
 npm i react-bluesky-embed
 ```
 
+## Usage
+
+```tsx
+  <PostThread
+    params={{
+      did: "did:plc:gru662w3omynujkgwebgeeof",
+      rkey: "3lbirib5xnc2u",
+    }}
+    theme="dark"
+  />
+```
+
 ## Contributing
 
 Visit our [contributing docs](https://react-bluesky-embed.vercel.app/contributing).
