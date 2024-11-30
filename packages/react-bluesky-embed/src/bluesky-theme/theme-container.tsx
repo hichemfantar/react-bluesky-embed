@@ -9,8 +9,8 @@ export function ThemeContainer({
   theme?: Theme;
 }) {
   return (
-    <div id="bluesky-embed" className={theme}>
-      {children}
+    <div id="bluesky-embed" className={`${theme}`}>
+      <div className="text-start">{children}</div>
     </div>
   );
 }

@@ -800,6 +800,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 #bluesky-embed .text-center {
   text-align: center;
 }
+#bluesky-embed .text-start {
+  text-align: start;
+}
 #bluesky-embed .text-\[15px\] {
   font-size: 15px;
 }
