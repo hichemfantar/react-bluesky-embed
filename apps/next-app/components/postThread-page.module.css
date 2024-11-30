@@ -1,0 +1,16 @@
+.root {
+  font-family: var(--postThread-font-family);
+  color: var(--postThread-font-color);
+  background: var(--postThread-bg-color);
+  height: 100vh;
+  overflow: auto;
+  padding: 2rem 1rem;
+}
+.main {
+  display: flex;
+  justify-content: center;
+}
+.footer {
+  font-size: 0.875rem;
+  text-align: center;
+}

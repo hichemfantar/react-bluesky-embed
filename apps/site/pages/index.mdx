@@ -1,0 +1,131 @@
+import { Sample } from "../components/Sample";
+
+# Introduction
+
+`react-bluesky-embed` allows you to embed post threads in your React application when using Next.js, Create React App, Vite, and more. This library does require using the Bluesky API. Post threads can be rendered statically, preventing the need to include an iframe and additional client-side JavaScript.
+
+<br />
+<Sample />
+
+You can see how it in action in [react-bluesky-embed-next.vercel.app/light/1629307668568633344](https://react-bluesky-embed-next.vercel.app/light/1629307668568633344). Replace the postThread ID in the URL to see other post threads.
+
+This library is fully compatible with [React Server Components](https://nextjs.org/docs/app/building-your-application/rendering/server-components).
+
+## Installation
+
+Install `react-bluesky-embed` using your package manager of choice:
+
+```bash
+pnpm add react-bluesky-embed
+```
+
+```bash
+yarn add react-bluesky-embed
+```
+
+```bash
+npm install react-bluesky-embed
+```
+
+Now follow the usage instructions for your framework or builder:
+
+- [Next.js](/react/next)
+- [Vite](/react/vite)
+- [Create React App](/react/create-react-app)
+
+> **Important**: Before going to production, we recommend [enabling cache for the Bluesky API](#enabling-cache-for-the-bluesky-api) as server IPs might get rate limited by Bluesky.
+
+## Choosing a theme
+
+### Toggling theme manually
+
+The closest `theme` prop can determine the theme of the postThread. You can set it to `light` or `dark`, like so:
+
+```tsx
+<div>
+  <PostThread
+    params={{
+      did: "did:plc:gru662w3omynujkgwebgeeof",
+      rkey: "3lbirib5xnc2u",
+    }}
+    theme="dark"
+  />
+</div>
+```
+
+## Enabling cache for the Bluesky API
+
+Rendering post threads requires making a call to Bluesky's API. Getting rate limited by that API is very hard but it's possible if you're relying only on the endpoint we provide for SWR (`react-bluesky-embed.vercel.app/api/postThread/:did-:rkey`) as the IPs of the server are making many requests to the syndication API. This also applies to RSC where the API endpoint is not required but the server is still making the request from the same IP.
+
+To prevent this, you can use a db like Redis or [Vercel KV](https://vercel.com/docs/storage/vercel-kv) to cache the post threads. For example using [Vercel KV](https://vercel.com/docs/storage/vercel-kv):
+
+```tsx
+import { Suspense } from "react";
+import {
+  PostThreadSkeleton,
+  EmbeddedPostThread,
+  PostThreadNotFound,
+} from "react-bluesky-embed";
+import { fetchPostThread, PostThread } from "react-bluesky-embed/api";
+import { kv } from "@vercel/kv";
+
+async function getPostThread(
+  params: PostThreadParams,
+  fetchOptions?: RequestInit
+): Promise<PostThread | undefined> {
+  try {
+    const { data, tombstone, notFound } = await fetchPostThread(
+      params,
+      fetchOptions
+    );
+
+    if (data) {
+      await kv.set(`postThread:${params}`, data);
+      return data;
+    } else if (tombstone || notFound) {
+      // remove the postThread from the cache if it has been made private by the author (tombstone)
+      // or if it no longer exists.
+      await kv.del(`postThread:${params}`);
+    }
+  } catch (error) {
+    console.error("fetching the postThread failed with:", error);
+  }
+
+  const cachedPostThread = await kv.get<PostThread>(`postThread:${params}`);
+  return cachedPostThread ?? undefined;
+}
+
+const PostThreadPage = async ({
+  params,
+}: {
+  params: { PostThreadParams };
+}) => {
+  try {
+    const postThread = await getPostThread(params);
+    return postThread ? (
+      <EmbeddedPostThread postThread={postThread} />
+    ) : (
+      <PostThreadNotFound />
+    );
+  } catch (error) {
+    console.error(error);
+    return <PostThreadNotFound error={error} />;
+  }
+};
+
+const Page = ({
+  params,
+}: {
+  params: { postThread: PostThreadParams };
+}) => (
+  <Suspense fallback={<PostThreadSkeleton />}>
+    <PostThreadPage params={params.postThread} />
+  </Suspense>
+);
+
+export default Page;
+```
+
+You can see it working at [react-bluesky-embed-next.vercel.app/light/vercel-kv/1629307668568633344](https://react-bluesky-embed-next.vercel.app/light/vercel-kv/1629307668568633344) ([source](https://github.com/vercel/react-bluesky-embed/blob/main/apps/next-app/app/light/vercel-kv/%5BpostThread%5D/page.tsx)).
+
+If you're using Next.js then using [`unstable_cache`](/react/next#enabling-cache) works too.

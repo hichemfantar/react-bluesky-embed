@@ -1,0 +1,31 @@
+{
+  "name": "site",
+  "private": true,
+  "license": "MIT",
+  "repository": "https://github.com/hichemfantar/react-bluesky-embed.git",
+  "author": "Hichem Fantar (https://bsky.app/profile/opensauced.bsky.social)",
+  "description": "Official site and documentation for react-bluesky-embed",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "edge-cors": "^0.2.1",
+    "next": "^14.2.18",
+    "nextra": "^3.2.4",
+    "nextra-theme-docs": "^3.2.4",
+    "react": "^18.3.1",
+    "react-bluesky-embed": "workspace:*",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.10.5",
+    "@types/react": "^18.3.12",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
+    "typescript": "^5.7.2"
+  }
+}

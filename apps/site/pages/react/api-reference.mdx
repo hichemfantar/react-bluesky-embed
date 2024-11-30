@@ -1,0 +1,86 @@
+# API Reference
+
+This is the reference for the utility functions that `react-bluesky-embed` provides for [building your own postThread components](/custom-theme) or simply fetching a postThread. Navigate to the docs for the [Bluesky theme](/bluesky-theme) if you want to render the existing PostThread components instead.
+
+## `getPostThread`
+
+```tsx
+import { getPostThread, type PostThread } from "react-bluesky-embed/api";
+
+function getPostThread(
+  params: PostThreadParams,
+  fetchOptions?: RequestInit
+): Promise<PostThread | undefined>;
+```
+
+Fetches and returns a [`PostThread`](https://github.com/hichemfantar/react-bluesky-embed/blob/main/packages/react-bluesky-embed/src/api/types/postThread.ts). It accepts the following params:
+
+- **params** - `{ did: string; rkey: string }`: the postThread ID. For example in `at://did:plc:zl7kgfro2rx3pavbslhhdhuy/app.bsky.feed.post/3lblfjf4evs2v` the DID is `did:plc:zl7kgfro2rx3pavbslhhdhuy` and the Rkey is `3lblfjf4evs2v`.
+- **fetchOptions** - `RequestInit` (Optional): options to pass to [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/fetch).
+
+If a postThread is not found it returns `undefined`.
+
+## `fetchPostThread`
+
+```tsx
+function fetchPostThread(
+  params: PostThreadParams,
+  fetchOptions?: RequestInit
+): Promise<{
+  data?: PostThread | undefined;
+  tombstone?: true | undefined;
+  notFound?: true | undefined;
+}>;
+```
+
+Fetches and returns a [`PostThread`](https://github.com/hichemfantar/react-bluesky-embed/blob/main/packages/react-bluesky-embed/src/api/types/postThread.ts) just like [`getPostThread`](#getpostthread), but it also returns additional information about the postThread:
+
+- **data** - `PostThread` (Optional): The postThread data.
+- **tombstone** - `true` (Optional): Indicates if the postThread has been made private.
+- **notFound** - `true` (Optional): Indicates if the postThread was not found.
+
+## `enrichPostThread`
+
+```tsx
+import { enrichPostThread, type EnrichedPostThread } from "react-bluesky-embed";
+
+const enrichPostThread: (postThread: PostThread) => EnrichedPostThread;
+```
+
+Enriches a [`PostThread`](https://github.com/hichemfantar/react-bluesky-embed/blob/main/packages/react-bluesky-embed/src/api/types/postThread.ts) as returned by [`getPostThread`](#getpostthread) with additional data. This is useful to more easily build custom postThread components.
+
+It returns an [`EnrichedPostThread`](https://github.com/hichemfantar/react-bluesky-embed/blob/main/packages/react-bluesky-embed/src/utils.ts).
+
+## `usePostThread`
+
+> If your app supports React Server Components, use [`getPostThread`](#getpostthread) instead.
+
+```tsx
+import { usePostThread } from "react-bluesky-embed";
+
+const usePostThread: (
+  params?: PostThreadParams,
+  fetchOptions?: RequestInit
+) => {
+  isLoading: boolean;
+  data: PostThread | null | undefined;
+  error: any;
+};
+```
+
+SWR hook for fetching a postThread in the browser. It accepts the following parameters:
+
+- **params** - `{ did: string; rkey: string }`: the postThread ID. For example in `at://did:plc:zl7kgfro2rx3pavbslhhdhuy/app.bsky.feed.post/3lblfjf4evs2v` the DID is `did:plc:zl7kgfro2rx3pavbslhhdhuy` and the Rkey is `3lblfjf4evs2v`.
+- **fetchOptions** - `RequestInit` (Optional): options to pass to [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/fetch). Try to pass down a reference to the same object to avoid unnecessary re-renders.
+
+We highly recommend adding your own API endpoint in `apiUrl` for production:
+
+```ts
+const postThread = usePostThread(params);
+```
+
+It's likely you'll never use this hook directly, and `apiUrl` is passed as a prop to a component instead:
+
+```tsx
+<PostThread params={params} />
+```

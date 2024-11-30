@@ -1,0 +1,24 @@
+{
+  "name": "bluesky-embed-monorepo",
+  "repository": "https://github.com/hichemfantar/react-bluesky-embed.git",
+  "license": "MIT",
+  "private": true,
+  "author": "Hichem Fantar (https://bsky.app/profile/opensauced.bsky.social)",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "start": "turbo run start",
+    "clean": "turbo run clean",
+    "lint": "turbo run lint",
+    "format": "prettier --write .",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build && pnpm publish -r"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.26.0",
+    "prettier": "^2.8.4",
+    "turbo": "^2.3.3"
+  },
+  "packageManager": "pnpm@9.5.0"
+}

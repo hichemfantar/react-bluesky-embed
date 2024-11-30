@@ -1,0 +1,38 @@
+# Create React App
+
+## Installation
+
+Follow the [installation docs in the Introduction](/#installation).
+
+## Usage
+
+In any component, import `PostThread` from `react-bluesky-embed` and use it like so:
+
+```tsx
+import { PostThread } from "react-bluesky-embed";
+
+export default function App() {
+  return (
+    <PostThread
+      params={{
+        did: "did:plc:gru662w3omynujkgwebgeeof",
+        rkey: "3lbirib5xnc2u",
+      }}
+    />
+  );
+}
+```
+
+You can learn more about `PostThread` in the [Bluesky theme docs](/bluesky-theme).
+
+## Running the test app
+
+Clone the [`react-bluesky-embed`](https://github.com/hichemfantar/react-bluesky-embed) repository and then run the following command:
+
+```bash
+pnpm install && pnpm dev --filter=create-react-app...
+```
+
+The app will be up and running at (localhost:3002)[http://localhost:3002] for the [CRA example](https://github.com/hichemfantar/react-bluesky-embed/tree/main/apps/create-react-app).
+
+The source code for `react-bluesky-embed` is imported from [packages/react-bluesky-embed](https://github.com/hichemfantar/react-bluesky-embed/tree/main/packages/react-bluesky-embed) and any changes you make to it will be reflected in the app immediately.

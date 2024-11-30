@@ -1,0 +1,104 @@
+{
+  "name": "react-bluesky-embed",
+  "version": "0.0.13",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hichemfantar/react-bluesky-embed.git",
+    "directory": "packages/react-bluesky-embed"
+  },
+  "author": "Hichem Fantar (https://bsky.app/profile/opensauced.bsky.social)",
+  "homepage": "https://react-bluesky-embed.vercel.app",
+  "keywords": [
+    "bluesky",
+    "bsky",
+    "embed",
+    "react",
+    "next",
+    "rsc",
+    "client",
+    "ssr",
+    "csr",
+    "fast"
+  ],
+  "scripts": {
+    "build": "pnpm build:swc && pnpm types",
+    "build:swc": "postcss src/tw.scss -o src/main.css && swc src -d dist --copy-files",
+    "dev": "pnpm build:swc -w",
+    "types": "tsc --emitDeclarationOnly",
+    "lint": "TIMING=1 eslint \"src/**/*.{ts,tsx,js,jsx}\" --fix",
+    "clean": "rm -rf dist && rm -rf .turbo",
+    "pcss": "postcss src/tw.scss -o src/main.css -w"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hichemfantar/react-bluesky-embed/issues"
+  },
+  "sideEffects": [
+    "./dist/bluesky-theme/postThread-container.js"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "react-server": "./dist/index.js",
+      "default": "./dist/index.client.js"
+    },
+    "./api": "./dist/api/index.js",
+    "./theme.css": "./dist/main.css"
+  },
+  "files": [
+    "dist/**/*.{js,d.ts,css}"
+  ],
+  "typesVersions": {
+    "*": {
+      "index": [
+        "src/index"
+      ],
+      "api": [
+        "src/api/index"
+      ],
+      "*": []
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "typesVersions": {
+      "*": {
+        "index": [
+          "dist/index.d.ts"
+        ],
+        "api": [
+          "dist/api/index.d.ts"
+        ],
+        "*": []
+      }
+    }
+  },
+  "peerDependencies": {
+    "react": ">= 18.0.0",
+    "react-dom": ">= 18.0.0"
+  },
+  "dependencies": {
+    "@atproto/api": "^0.13.17",
+    "@swc/helpers": "^0.5.15",
+    "swr": "^2.2.5"
+  },
+  "devDependencies": {
+    "@swc/cli": "^0.1.65",
+    "@swc/core": "^1.9.3",
+    "@types/node": "20.10.5",
+    "@types/react": "^18.3.12",
+    "autoprefixer": "^10.4.16",
+    "chokidar": "^3.5.3",
+    "clsx": "^2.0.0",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.0.4",
+    "postcss": "^8.4.32",
+    "postcss-cli": "^11.0.0",
+    "postcss-scss": "^4.0.9",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.9",
+    "tailwind-merge": "^2.5.5",
+    "tailwindcss": "^3.4.15",
+    "typescript": "^5.7.2"
+  }
+}

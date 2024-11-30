@@ -1,0 +1,30 @@
+{
+  "name": "create-react-app",
+  "private": true,
+  "license": "MIT",
+  "repository": "https://github.com/hichemfantar/react-bluesky-embed.git",
+  "author": "Hichem Fantar (https://bsky.app/profile/opensauced.bsky.social)",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "react-scripts start",
+    "build": "react-scripts build"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "react": "^18.3.1",
+    "react-bluesky-embed": "workspace:*",
+    "react-dom": "^18.3.1",
+    "react-scripts": "5.0.1"
+  },
+  "devDependencies": {
+    "@babel/runtime": "7.22.6",
+    "@types/node": "20.10.4",
+    "postcss-flexbugs-fixes": "^5.0.2"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

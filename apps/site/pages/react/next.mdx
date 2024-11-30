@@ -1,0 +1,201 @@
+# Next.js
+
+## Installation
+
+> Next.js 13.2.1 or higher is required in order to use `react-bluesky-embed`.
+
+Follow the [installation docs in the Introduction](/#installation).
+
+## Usage
+
+In any component, import `PostThread` from `react-bluesky-embed` and use it like so:
+
+```tsx
+import { PostThread } from "react-bluesky-embed";
+
+export default function Page() {
+  return (
+    <PostThread
+      params={{
+        did: "did:plc:gru662w3omynujkgwebgeeof",
+        rkey: "3lbirib5xnc2u",
+      }}
+    />
+  );
+}
+```
+
+`PostThread` works differently depending on where it's used. If it's used in the App Router it will fetch the postThread in the server. If it's used in the pages directory it will fetch the postThread in the client with [SWR](https://swr.vercel.app/).
+
+You can learn more about `PostThread` in the [Bluesky theme docs](/bluesky-theme). And you can learn more about the usage in [Running the test app](#running-the-test-app).
+
+### Troubleshooting
+
+If you see an error saying that CSS can't be imported from `node_modules` in the `pages` directory. Add the following config to `next.config.js`:
+
+```js
+transpilePackages: ["react-bluesky-embed"];
+```
+
+The error won't happen if the App Router is enabled, where [Next.js supports CSS imports from `node_modules`](https://github.com/vercel/next.js/discussions/27953#discussioncomment-3978605).
+
+### Enabling cache
+
+It's recommended to enable cache for the Bluesky API if you intend to go to production. This is how you can do it with [`unstable_cache`](https://nextjs.org/docs/app/api-reference/functions/unstable_cache):
+
+```tsx
+import { Suspense } from "react";
+import { unstable_cache } from "next/cache";
+import {
+  PostThreadSkeleton,
+  EmbeddedPostThread,
+  PostThreadNotFound,
+} from "react-bluesky-embed";
+import { getPostThread as _getPostThread } from "react-bluesky-embed/api";
+
+const getPostThread = unstable_cache(
+  async (params: PostThreadParams) => _getPostThread(params),
+  ["postThread"],
+  { revalidate: 3600 * 24 }
+);
+
+const PostThreadPage = async ({
+  params,
+}: {
+  params: PostThreadParams;
+}) => {
+  try {
+    const postThread = await getPostThread(params);
+    return postThread ? (
+      <EmbeddedPostThread postThread={postThread} />
+    ) : (
+      <PostThreadNotFound />
+    );
+  } catch (error) {
+    console.error(error);
+    return <PostThreadNotFound error={error} />;
+  }
+};
+
+const Page = ({
+  params,
+}: {
+  params: { postThread: PostThreadParams };
+}) => (
+  <Suspense fallback={<PostThreadSkeleton />}>
+    <PostThreadPage params={params.postThread} />
+  </Suspense>
+);
+
+export default Page;
+```
+
+This can prevent getting your server IPs rate limited if they are making too many requests to the Bluesky API.
+
+## Advanced usage
+
+### Manual data fetching
+
+You can use the [`getPostThread`](/api-reference#getpostthread) function from `react-bluesky-embed/api` to fetch the postThread manually. This is useful for SSG pages and for other [Next.js data fetching methods](https://nextjs.org/docs/basic-features/data-fetching/overview) in the `pages` directory.
+
+For example, using `getStaticProps` in `pages/[postThread].tsx` to fetch the postThread and send it as props to the page component:
+
+```tsx
+import { useRouter } from "next/router";
+import { getPostThread, type PostThread } from "react-bluesky-embed/api";
+import { EmbeddedPostThread, PostThreadSkeleton } from "react-bluesky-embed";
+
+export async function getStaticProps({
+  params,
+}: {
+  params: { postThread: string };
+}) {
+  const postThreadId = params.postThread;
+
+  try {
+    const postThread = await getPostThread(postThreadId);
+    return postThread ? { props: { postThread } } : { notFound: true };
+  } catch (error) {
+    return { notFound: true };
+  }
+}
+
+export async function getStaticPaths() {
+  return { paths: [], fallback: true };
+}
+
+export default function Page({ postThread }: { postThread: PostThread }) {
+  const { isFallback } = useRouter();
+  return isFallback ? (
+    <PostThreadSkeleton />
+  ) : (
+    <EmbeddedPostThread postThread={postThread} />
+  );
+}
+```
+
+### Adding `next/image`
+
+Add the domain URLs from Bluesky to [`images.remotePatterns`](https://nextjs.org/docs/api-reference/next/image#remote-patterns) in `next.config.js`:
+
+```js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    remotePatterns: [{ protocol: "https", hostname: "cdn.bsky.app" }],
+  },
+};
+```
+
+In `postThread-components.tsx` or elsewhere, import the `Image` component from `next/image` and use it to define custom image components for the postThread:
+
+```tsx
+import Image from "next/image";
+import type { BlueskyComponents } from "react-bluesky-embed";
+
+export const components: BlueskyComponents = {
+  AvatarImg: (props) => <Image {...props} />,
+  MediaImg: (props) => <Image {...props} fill unoptimized />,
+};
+```
+
+Then pass the `components` prop to `PostThread`:
+
+```tsx
+import { PostThread } from "react-bluesky-embed";
+import { components } from "./postThread-components";
+
+export default function Page() {
+  return (
+    <PostThread
+      params={{
+        did: "did:plc:gru662w3omynujkgwebgeeof",
+        rkey: "3lbirib5xnc2u",
+      }}
+      components={components}
+    />
+  );
+}
+```
+
+## Running the test app
+
+Clone the [`react-bluesky-embed`](https://github.com/hichemfantar/react-bluesky-embed) repository and then run the following command:
+
+```bash
+pnpm install && pnpm dev --filter=next-app...
+```
+
+The app will be up and running at http://localhost:3001 for the [Next.js app example](https://github.com/hichemfantar/react-bluesky-embed/tree/main/apps/next-app).
+
+The app shows the usage of `react-bluesky-embed` in different scenarios:
+
+- [localhost:3001/light/1629307668568633344](http://localhost:3001/light/1629307668568633344) renders the postThread in the app router.
+- [localhost:3001/dark/1629307668568633344](http://localhost:3001/dark/1629307668568633344) renders the postThread using SSG in the pages directory.
+- [localhost:3001/light/mdx](http://localhost:3001/light/mdx) rendes the postThread in MDX (with the experimental `mdxRs` config enabled).
+- [localhost:3001/light/suspense/1629307668568633344](http://localhost:3001/light/suspense/1629307668568633344) renders the postThread with a custom `Suspense` wrapper.
+- [localhost:3001/dark/swr/1629307668568633344](http://localhost:3001/dark/swr/1629307668568633344) uses `apiUrl` to change the API endpoint from which the postThread is fetched in SWR mode.
+- [localhost:3001/light/cache/1629307668568633344](http://localhost:3001/light/suspense/1629307668568633344) renders the postThread while caching the postThread data with [`unstable_cache`](https://nextjs.org/docs/app/api-reference/functions/unstable_cache).
+- [localhost:3001/light/vercel-kv/1629307668568633344](http://localhost:3001/light/suspense/1629307668568633344) renders the postThread while caching the postThread data with [Vercel KV](https://vercel.com/docs/storage/vercel-kv).
+
+The source code for `react-bluesky-embed` is imported from [packages/react-bluesky-embed](https://github.com/hichemfantar/react-bluesky-embed/tree/main/packages/react-bluesky-embed) and any changes you make to it will be reflected in the app immediately.
