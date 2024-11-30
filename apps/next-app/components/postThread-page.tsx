@@ -10,7 +10,7 @@ export const PostThreadPage = ({ children, footer }: Props) => (
       <main className={s.main}>{children}</main>
       {footer && (
         <footer className={s.footer}>
-          <p>🤯 This postThread was statically generated.</p>
+          <p>🤯 This post thread was statically generated.</p>
         </footer>
       )}
     </div>

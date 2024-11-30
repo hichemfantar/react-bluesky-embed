@@ -2,8 +2,8 @@ import { getPostThread, PostThreadParams } from "react-bluesky-embed/api";
 import { EmbeddedPostThread, PostThreadNotFound } from "react-bluesky-embed";
 
 const PostThreadPage = async ({ params }: { params: PostThreadParams }) => {
-  const did = params.did.split("-")[0];
-  const rkey = params.rkey.split("-")[1];
+  const did = params.did;
+  const rkey = params.rkey;
 
   try {
     const postThread = await getPostThread({

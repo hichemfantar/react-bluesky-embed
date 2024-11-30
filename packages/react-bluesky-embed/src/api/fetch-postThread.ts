@@ -42,7 +42,7 @@ export async function fetchPostThread({
   try {
     let atUri = DEFAULT_URI;
 
-    atUri = `at://${params.did}/app.bsky.feed.post/${params.rkey}`;
+    atUri = `at://${decodeURIComponent(params.did)}/app.bsky.feed.post/${decodeURIComponent(params.rkey)}`;
 
     const { data } = await agent.getPostThread({
       uri: atUri,

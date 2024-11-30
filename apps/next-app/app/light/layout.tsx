@@ -7,7 +7,7 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => (
     <div className={clsx(s.root, "react-bluesky-embed-theme")}>
       <main className={s.main}>{children}</main>
       <footer className={s.footer}>
-        <p>🤯 This postThread was statically generated.</p>
+        <p>🤯 This post thread was statically generated.</p>
       </footer>
     </div>
   </div>

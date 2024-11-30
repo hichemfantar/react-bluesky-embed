@@ -1,16 +1,16 @@
 import { useRouter } from "next/router";
 import { EmbeddedPostThread, PostThreadSkeleton } from "react-bluesky-embed";
 import { getPostThread, type PostThread } from "react-bluesky-embed/api";
-import { PostThreadPage } from "../../components/postThread-page";
+import { PostThreadPage } from "../../../../components/postThread-page";
 
 export async function getStaticProps({
   params,
 }: {
-  params: { postThread: string };
+  params: { did: string; rkey: string };
 }) {
   try {
-    const did = params.postThread.split("-")[0];
-    const rkey = params.postThread.split("-")[1];
+    const did = params.did;
+    const rkey = params.rkey;
     const postThread = await getPostThread({
       did,
       rkey,
