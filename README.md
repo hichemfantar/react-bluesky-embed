@@ -6,7 +6,7 @@ Profiles and comments support coming soon.
 
 Adapters for Solid, Vue, Angular, and Svelte are coming soon.
 
-![Banner](apps/site/public/opengraph-image.png)
+![Banner](/apps/site/public/opengraph-image.png)
 *Banner*
 
 ## Documentation
