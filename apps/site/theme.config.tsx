@@ -37,6 +37,8 @@ const config: DocsThemeConfig = {
           name="og:description"
           content="Embed post threads in your React application."
         />
+        <meta name="og:site_name" content="Bluesky Embed" />
+        <meta property="og:image" content="/opengraph-image.png"></meta>
         <link rel="icon" href="/favicon.ico" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
@@ -80,7 +82,8 @@ const config: DocsThemeConfig = {
       </div>
     ),
   },
-  docsRepositoryBase: "https://github.com/hichemfantar/react-bluesky-embed",
+  docsRepositoryBase:
+    "https://github.com/hichemfantar/react-bluesky-embed/tree/main/apps/site",
   editLink: {
     content: "Edit this page on GitHub →",
   },
