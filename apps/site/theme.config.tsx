@@ -72,7 +72,7 @@ const config: DocsThemeConfig = {
     content: (
       <div className='before:content-["🌐_"] whitespace-break-spaces'>
         {/* React Bluesky Embed is now in Beta.{" "} */}
-        <span>Bluesky Community needs you. </span>
+        <span>Contribute to Bluesky Community. </span>
         <Link
           href="https://github.com/hichemfantar/bluesky-community"
           className='after:content-["_→"]'
