@@ -1,5 +1,12 @@
 # React Bluesky Embed
 
+<a href="https://www.npmjs.com/package/react-bluesky-embed"><img alt="NPM version" src="https://img.shields.io/npm/v/react-bluesky-embed.svg?style=for-the-badge&labelColor=000000"></a>
+<a href="https://github.com/hichemfantar/react-bluesky-embed/blob/main/license.md"><img alt="License" src="https://img.shields.io/npm/l/next.svg?style=for-the-badge&labelColor=000000"></a>
+<a href="https://bsky.app/profile/opensauced.bsky.social"><img alt="Join the community" src="https://img.shields.io/badge/Join%20the%20community-blueviolet.svg?style=for-the-badge&logo=Bluesky&labelColor=000000&logoWidth=20"></a>
+<a href="https://react-bluesky-embed.vercel.app/"><img alt="Read the documentation" src="https://img.shields.io/badge/Documentation-blue.svg?style=for-the-badge&logo=React&labelColor=000000&logoWidth=20"></a>
+<a href="https://github.com/hichemfantar/react-bluesky-embed"><img alt="Star the repository" src="https://img.shields.io/badge/Star%20the%20repository-gold.svg?style=for-the-badge&logo=github&labelColor=000000&logoWidth=20"></a>
+<a href="https://github.com/hichemfantar/react-bluesky-embed/fork"><img alt="Fork the repository" src="https://img.shields.io/badge/Fork%20the%20repository-fb923c.svg?style=for-the-badge&logo=forgejo&labelColor=000000&logoWidth=20"></a>
+
 React Bluesky Embed allows you to embed post threads, profiles, and comments in your React application when using Next.js, Create React App, Vite, and more.
 
 Profiles and comments support coming soon.
