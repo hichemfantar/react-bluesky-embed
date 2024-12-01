@@ -2,6 +2,7 @@
 export default {
   // prefix: 'bsky-', // Add this line
   darkMode: ["selector", "#bluesky-embed.dark"],
+  // darkMode: ["selector", "[data-theme="dark"],.dark"],
   content: [
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
     // './node_modules/react-bluesky-embed/**/*.{vue,js,ts,jsx,tsx}', // Add this line
