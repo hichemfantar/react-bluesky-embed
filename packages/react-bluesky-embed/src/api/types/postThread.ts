@@ -1,11 +1,3 @@
-import { AppBskyFeedDefs } from "@atproto/api";
+import { PostThread, PostThreadParams } from "bluesky-embed-core/api";
 
-/**
- * A postThread as returned by the the Bluesky API.
- */
-export interface PostThread extends AppBskyFeedDefs.ThreadViewPost {}
-
-export interface PostThreadParams {
-  did: string;
-  rkey: string;
-}
+export type { PostThread, PostThreadParams };
