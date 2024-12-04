@@ -190,12 +190,12 @@ The app will be up and running at http://localhost:3001 for the [Next.js app exa
 
 The app shows the usage of `react-bluesky-embed` in different scenarios:
 
-- [localhost:3001/light/did:plc:y4zs4cabaezzwx3bz2e5nnj2/3lc3gazwx5s2m](http://localhost:3001/light/did:plc:y4zs4cabaezzwx3bz2e5nnj2/3lc3gazwx5s2m) renders the postThread in the app router.
-- [localhost:3001/dark/did:plc:y4zs4cabaezzwx3bz2e5nnj2/3lc3gazwx5s2m](http://localhost:3001/dark/did:plc:y4zs4cabaezzwx3bz2e5nnj2/3lc3gazwx5s2m) renders the postThread using SSG in the pages directory.
+- [localhost:3001/light/did:plc:gru662w3omynujkgwebgeeof/3lbirib5xnc2u](http://localhost:3001/light/did:plc:gru662w3omynujkgwebgeeof/3lbirib5xnc2u) renders the postThread in the app router.
+- [localhost:3001/dark/did:plc:gru662w3omynujkgwebgeeof/3lbirib5xnc2u](http://localhost:3001/dark/did:plc:gru662w3omynujkgwebgeeof/3lbirib5xnc2u) renders the postThread using SSG in the pages directory.
 - [localhost:3001/light/mdx](http://localhost:3001/light/mdx) rendes the postThread in MDX (with the experimental `mdxRs` config enabled).
-- [localhost:3001/light/suspense/did:plc:y4zs4cabaezzwx3bz2e5nnj2/3lc3gazwx5s2m](http://localhost:3001/light/suspense/did:plc:y4zs4cabaezzwx3bz2e5nnj2/3lc3gazwx5s2m) renders the postThread with a custom `Suspense` wrapper.
-- [localhost:3001/dark/swr/did:plc:y4zs4cabaezzwx3bz2e5nnj2/3lc3gazwx5s2m](http://localhost:3001/dark/swr/did:plc:y4zs4cabaezzwx3bz2e5nnj2/3lc3gazwx5s2m) uses `apiUrl` to change the API endpoint from which the postThread is fetched in SWR mode.
-- [localhost:3001/light/cache/did:plc:y4zs4cabaezzwx3bz2e5nnj2/3lc3gazwx5s2m](http://localhost:3001/light/suspense/did:plc:y4zs4cabaezzwx3bz2e5nnj2/3lc3gazwx5s2m) renders the postThread while caching the postThread data with [`unstable_cache`](https://nextjs.org/docs/app/api-reference/functions/unstable_cache).
-- [localhost:3001/light/vercel-kv/did:plc:y4zs4cabaezzwx3bz2e5nnj2/3lc3gazwx5s2m](http://localhost:3001/light/suspense/did:plc:y4zs4cabaezzwx3bz2e5nnj2/3lc3gazwx5s2m) renders the postThread while caching the postThread data with [Vercel KV](https://vercel.com/docs/storage/vercel-kv).
+- [localhost:3001/light/suspense/did:plc:gru662w3omynujkgwebgeeof/3lbirib5xnc2u](http://localhost:3001/light/suspense/did:plc:gru662w3omynujkgwebgeeof/3lbirib5xnc2u) renders the postThread with a custom `Suspense` wrapper.
+- [localhost:3001/dark/swr/did:plc:gru662w3omynujkgwebgeeof/3lbirib5xnc2u](http://localhost:3001/dark/swr/did:plc:gru662w3omynujkgwebgeeof/3lbirib5xnc2u) uses `apiUrl` to change the API endpoint from which the postThread is fetched in SWR mode.
+- [localhost:3001/light/cache/did:plc:gru662w3omynujkgwebgeeof/3lbirib5xnc2u](http://localhost:3001/light/suspense/did:plc:gru662w3omynujkgwebgeeof/3lbirib5xnc2u) renders the postThread while caching the postThread data with [`unstable_cache`](https://nextjs.org/docs/app/api-reference/functions/unstable_cache).
+- [localhost:3001/light/vercel-kv/did:plc:gru662w3omynujkgwebgeeof/3lbirib5xnc2u](http://localhost:3001/light/suspense/did:plc:gru662w3omynujkgwebgeeof/3lbirib5xnc2u) renders the postThread while caching the postThread data with [Vercel KV](https://vercel.com/docs/storage/vercel-kv).
 
 The source code for `react-bluesky-embed` is imported from [packages/react-bluesky-embed](https://github.com/hichemfantar/react-bluesky-embed/tree/main/packages/react-bluesky-embed) and any changes you make to it will be reflected in the app immediately.
