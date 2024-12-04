@@ -80,8 +80,8 @@
   "dependencies": {
     "@atproto/api": "^0.13.17",
     "@swc/helpers": "^0.5.15",
-    "swr": "^2.2.5",
-    "bluesky-embed-core": "workspace:*"
+    "bluesky-embed-core": "workspace:*",
+    "swr": "^2.2.5"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.65",
@@ -91,8 +91,8 @@
     "autoprefixer": "^10.4.16",
     "chokidar": "^3.5.3",
     "clsx": "^2.0.0",
-    "eslint": "^8.56.0",
-    "eslint-config-next": "^14.0.4",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.19",
     "postcss": "^8.4.32",
     "postcss-cli": "^11.0.0",
     "postcss-scss": "^4.0.9",
