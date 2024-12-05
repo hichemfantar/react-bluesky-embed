@@ -1,5 +1,16 @@
 # react-bluesky-embed
 
+## 0.4.0
+
+### Minor Changes
+
+- use client fix
+
+### Patch Changes
+
+- Updated dependencies
+  - bluesky-embed-core@0.3.0
+
 ## 0.3.0
 
 ### Minor Changes

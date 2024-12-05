@@ -1,5 +1,11 @@
 # bluesky-embed-core
 
+## 0.3.0
+
+### Minor Changes
+
+- use client fix
+
 ## 0.2.0
 
 ### Minor Changes
