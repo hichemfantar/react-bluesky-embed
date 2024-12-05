@@ -1,8 +1,8 @@
+"use client";
+
 import { AppBskyFeedDefs, AppBskyFeedPost } from "@atproto/api";
 import { useState } from "react";
 import { PostThread } from "../api/index.js";
-import { prettyNumber } from "bluesky-embed-core";
-import { LikeIcon, BlueskyLogo, ReplyIcon, RepostIcon } from "./icons.js";
 import { Embed } from "./embed.js";
 import { PostContent } from "./post.js";
 
