@@ -4,8 +4,8 @@ import { ThemeContainer } from "./theme-container.js";
 export const PostThreadSkeleton = ({ theme = "light" }: { theme?: Theme }) => {
   return (
     <ThemeContainer theme={theme}>
-      <div className="dark:bg-[#161e27] bg-white transition max-w-[600px] sm:min-w-[300px] rounded-xl p-4 border dark:border-neutral-800">
-        <div className="flex-1 flex-col flex gap-2 pb-8">
+      <div className="dark:bg-[#161e27] bg-white transition max-w-[600px] sm:min-w-[300px] rounded-xl p-4 border">
+        <div className="flex-1 flex-col flex gap-2">
           <div className="flex gap-2.5 items-center">
             <div className="w-10 h-10 overflow-hidden rounded-full bg-neutral-100 dark:bg-gray-700 shrink-0 animate-pulse" />
             <div className="flex-1">

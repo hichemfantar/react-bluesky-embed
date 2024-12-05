@@ -16,14 +16,6 @@ This library is fully compatible with [React Server Components](https://nextjs.o
 Install `react-bluesky-embed` using your package manager of choice:
 
 ```bash
-pnpm add react-bluesky-embed
-```
-
-```bash
-yarn add react-bluesky-embed
-```
-
-```bash
 npm install react-bluesky-embed
 ```
 
@@ -71,12 +63,12 @@ import { kv } from "@vercel/kv";
 
 async function getPostThread(
   params: PostThreadParams,
-  fetchOptions?: RequestInit
+  config?: PostThreadConfig
 ): Promise<PostThread | undefined> {
   try {
     const { data, tombstone, notFound } = await fetchPostThread(
       params,
-      fetchOptions
+      config
     );
 
     if (data) {

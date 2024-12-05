@@ -1,3 +1,7 @@
-import { PostThread, PostThreadParams } from "bluesky-embed-core/api";
+import {
+  PostThread,
+  PostThreadParams,
+  PostThreadConfig,
+} from "bluesky-embed-core/api";
 
-export type { PostThread, PostThreadParams };
+export type { PostThread, PostThreadParams, PostThreadConfig };

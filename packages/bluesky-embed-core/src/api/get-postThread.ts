@@ -1,16 +1,17 @@
 import { fetchPostThread } from "./fetch-postThread.js";
-import type { PostThread } from "./types/index.js";
+import type {
+  PostThread,
+  PostThreadConfig,
+  PostThreadParams,
+} from "./types/index.js";
 
 export async function getPostThread(
-  params: {
-    did: string;
-    rkey: string;
-  },
-  fetchOptions?: RequestInit
+  params: PostThreadParams,
+  config?: PostThreadConfig
 ): Promise<PostThread | undefined> {
   const { data, notFound, tombstone } = await fetchPostThread({
     params,
-    fetchOptions,
+    config,
   });
 
   if (notFound) {

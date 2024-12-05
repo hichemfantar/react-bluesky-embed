@@ -433,6 +433,18 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   #bluesky-embed [hidden]:where(:not([hidden="until-found"])) {
   display: none;
 }
+  #bluesky-embed *,
+    #bluesky-embed ::before,
+    #bluesky-embed ::after {
+  --tw-border-opacity: 1;
+  border-color: rgb(212 219 226 / var(--tw-border-opacity, 1));
+}
+  #bluesky-embed *:where(#bluesky-embed.dark, #bluesky-embed.dark *), #bluesky-embed :where(#bluesky-embed.dark, #bluesky-embed.dark *)
+    ::before, #bluesky-embed :where(#bluesky-embed.dark, #bluesky-embed.dark *)
+    ::after {
+  --tw-border-opacity: 1;
+  border-color: rgb(46 63 81 / var(--tw-border-opacity, 1));
+}
   #bluesky-embed .container {
   width: 100%;
 }
@@ -471,9 +483,20 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     -o-tab-size: 4;
     tab-size: 4;
     /* 3 */
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-      "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    font-family:
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      "Helvetica Neue",
+      Arial,
+      "Noto Sans",
+      sans-serif,
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      "Segoe UI Symbol",
       "Noto Color Emoji";
     /* 4 */
     font-feature-settings: normal;
@@ -498,6 +521,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }
 #bluesky-embed .top-1\/2 {
   top: 50%;
+}
+#bluesky-embed .my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 #bluesky-embed .ml-1 {
   margin-left: 0.25rem;
@@ -554,6 +581,14 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 #bluesky-embed .size-3\/5 {
   width: 60%;
   height: 60%;
+}
+#bluesky-embed .size-4 {
+  width: 1rem;
+  height: 1rem;
+}
+#bluesky-embed .size-6 {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 #bluesky-embed .size-full {
   width: 100%;
@@ -616,8 +651,14 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 #bluesky-embed .w-full {
   width: 100%;
 }
+#bluesky-embed .max-w-\[150px\] {
+  max-width: 150px;
+}
 #bluesky-embed .max-w-\[600px\] {
   max-width: 600px;
+}
+#bluesky-embed .max-w-xl {
+  max-width: 36rem;
 }
 #bluesky-embed .flex-1 {
   flex: 1 1 0%;
@@ -668,6 +709,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 #bluesky-embed .justify-center {
   justify-content: center;
 }
+#bluesky-embed .justify-between {
+  justify-content: space-between;
+}
 #bluesky-embed .gap-1 {
   gap: 0.25rem;
 }
@@ -687,6 +731,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   --tw-space-x-reverse: 0;
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+#bluesky-embed :is(.space-y-4 > :not([hidden]) ~ :not([hidden])) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 #bluesky-embed .self-start {
   align-self: flex-start;
@@ -721,6 +770,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 #bluesky-embed .border {
   border-width: 1px;
 }
+#bluesky-embed .border-l-2 {
+  border-left-width: 2px;
+}
 #bluesky-embed .border-t {
   border-top-width: 1px;
 }
@@ -730,6 +782,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 #bluesky-embed .bg-brand {
   --tw-bg-opacity: 1;
   background-color: rgb(10 122 255 / var(--tw-bg-opacity, 1));
+}
+#bluesky-embed .bg-gray-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity, 1));
 }
 #bluesky-embed .bg-neutral-100 {
   --tw-bg-opacity: 1;
@@ -788,8 +844,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 #bluesky-embed .pb-3 {
   padding-bottom: 0.75rem;
 }
-#bluesky-embed .pb-8 {
-  padding-bottom: 2rem;
+#bluesky-embed .pl-2 {
+  padding-left: 0.5rem;
 }
 #bluesky-embed .pt-2\.5 {
   padding-top: 0.625rem;
@@ -809,6 +865,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 #bluesky-embed .text-\[17px\] {
   font-size: 17px;
 }
+#bluesky-embed .text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
 #bluesky-embed .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -816,6 +876,14 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 #bluesky-embed .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+#bluesky-embed .text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+#bluesky-embed .text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 #bluesky-embed .font-bold {
   font-weight: 700;
@@ -839,6 +907,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity, 1));
 }
+#bluesky-embed .text-blue-500 {
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity, 1));
+}
 #bluesky-embed .text-blue-600 {
   --tw-text-opacity: 1;
   color: rgb(37 99 235 / var(--tw-text-opacity, 1));
@@ -859,11 +931,17 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   --tw-text-opacity: 1;
   color: rgb(66 87 108 / var(--tw-text-opacity, 1));
 }
+#bluesky-embed .underline {
+  text-decoration-line: underline;
+}
 #bluesky-embed .decoration-2 {
   text-decoration-thickness: 2px;
 }
 #bluesky-embed .underline-offset-2 {
   text-underline-offset: 2px;
+}
+#bluesky-embed .opacity-60 {
+  opacity: 0.6;
 }
 #bluesky-embed .blur {
   --tw-blur: blur(8px);
@@ -931,10 +1009,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   #bluesky-embed .sm\:min-w-\[300px\] {
     min-width: 300px;
   }
-}
-#bluesky-embed .dark\:border-neutral-800:where(#bluesky-embed.dark, #bluesky-embed.dark *) {
-  --tw-border-opacity: 1;
-  border-color: rgb(38 38 38 / var(--tw-border-opacity, 1));
 }
 #bluesky-embed .dark\:bg-\[\#161e27\]:where(#bluesky-embed.dark, #bluesky-embed.dark *) {
   --tw-bg-opacity: 1;

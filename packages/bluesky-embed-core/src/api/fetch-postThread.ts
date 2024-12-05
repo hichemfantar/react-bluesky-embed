@@ -1,5 +1,9 @@
 import { AppBskyFeedDefs, AtpAgent } from "@atproto/api";
-import type { PostThread } from "./types/index.js";
+import type {
+  PostThread,
+  PostThreadConfig,
+  PostThreadParams,
+} from "./types/index.js";
 
 export class BlueskyApiError extends Error {
   status: number;
@@ -26,15 +30,13 @@ const DEFAULT_URI =
 
 export async function fetchPostThread({
   params,
-  config,
-  fetchOptions,
+  config = {
+    depth: 0,
+    parentHeight: 0,
+  },
 }: {
-  params: {
-    did: string;
-    rkey: string;
-  };
-  config?: { depth: number; parentHeight: number };
-  fetchOptions?: RequestInit;
+  params: PostThreadParams;
+  config?: PostThreadConfig;
 }): Promise<{ data?: PostThread; notFound?: true; tombstone?: true }> {
   const agent = new AtpAgent({
     service: "https://public.api.bsky.app",
@@ -46,8 +48,8 @@ export async function fetchPostThread({
 
     const { data } = await agent.getPostThread({
       uri: atUri,
-      depth: 0,
-      parentHeight: 0,
+      depth: config.depth ?? 0,
+      parentHeight: config.parentHeight ?? 0,
     });
 
     if (!AppBskyFeedDefs.isThreadViewPost(data.thread)) {

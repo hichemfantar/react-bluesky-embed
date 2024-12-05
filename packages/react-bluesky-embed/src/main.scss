@@ -2,6 +2,14 @@
   @tailwind base;
   @tailwind components;
 
+  @layer base {
+    *,
+    ::before,
+    ::after {
+      @apply border-[#d4dbe2] dark:border-[#2e3f51];
+    }
+  }
+
   & {
     line-height: 1.5;
     /* 1 */
@@ -12,9 +20,20 @@
     -o-tab-size: 4;
     tab-size: 4;
     /* 3 */
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-      "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    font-family:
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      "Helvetica Neue",
+      Arial,
+      "Noto Sans",
+      sans-serif,
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      "Segoe UI Symbol",
       "Noto Color Emoji";
     /* 4 */
     font-feature-settings: normal;

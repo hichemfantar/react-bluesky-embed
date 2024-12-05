@@ -9,14 +9,14 @@ import { getPostThread, type PostThread } from "react-bluesky-embed/api";
 
 function getPostThread(
   params: PostThreadParams,
-  fetchOptions?: RequestInit
+  config?: PostThreadConfig
 ): Promise<PostThread | undefined>;
 ```
 
 Fetches and returns a [`PostThread`](https://github.com/hichemfantar/react-bluesky-embed/blob/main/packages/react-bluesky-embed/src/api/types/postThread.ts). It accepts the following params:
 
 - **params** - `{ did: string; rkey: string }`: the postThread ID. For example in `at://did:plc:zl7kgfro2rx3pavbslhhdhuy/app.bsky.feed.post/3lblfjf4evs2v` the DID is `did:plc:zl7kgfro2rx3pavbslhhdhuy` and the Rkey is `3lblfjf4evs2v`.
-- **fetchOptions** - `RequestInit` (Optional): options to pass to [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/fetch).
+- **config** - `PostThreadConfig` (Optional): options to pass to [`getPostThread`](https://docs.bsky.app/docs/api/app-bsky-feed-get-post-thread#request).
 
 If a postThread is not found it returns `undefined`.
 
@@ -25,7 +25,7 @@ If a postThread is not found it returns `undefined`.
 ```tsx
 function fetchPostThread(
   params: PostThreadParams,
-  fetchOptions?: RequestInit
+  config?: PostThreadConfig
 ): Promise<{
   data?: PostThread | undefined;
   tombstone?: true | undefined;
@@ -60,7 +60,7 @@ import { usePostThread } from "react-bluesky-embed";
 
 const usePostThread: (
   params?: PostThreadParams,
-  fetchOptions?: RequestInit
+  config?: PostThreadConfig
 ) => {
   isLoading: boolean;
   data: PostThread | null | undefined;
@@ -71,7 +71,7 @@ const usePostThread: (
 SWR hook for fetching a postThread in the browser. It accepts the following parameters:
 
 - **params** - `{ did: string; rkey: string }`: the postThread ID. For example in `at://did:plc:zl7kgfro2rx3pavbslhhdhuy/app.bsky.feed.post/3lblfjf4evs2v` the DID is `did:plc:zl7kgfro2rx3pavbslhhdhuy` and the Rkey is `3lblfjf4evs2v`.
-- **fetchOptions** - `RequestInit` (Optional): options to pass to [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/fetch). Try to pass down a reference to the same object to avoid unnecessary re-renders.
+- **config** - `PostThreadConfig` (Optional): [`getPostThread`](https://docs.bsky.app/docs/api/app-bsky-feed-get-post-thread#request). Try to pass down a reference to the same object to avoid unnecessary re-renders.
 
 We highly recommend adding your own API endpoint in `apiUrl` for production:
 

@@ -38,7 +38,6 @@ const PostThreadContent = async ({
 
   return (
     <>
-      {/* <Post thread={thread} key={thread.post.uri} /> */}
       <EmbeddedPostThread
         theme={theme}
         postThread={postThread}

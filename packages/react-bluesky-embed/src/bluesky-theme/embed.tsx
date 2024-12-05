@@ -146,6 +146,7 @@ export function Embed({
             <div className="flex gap-1.5 items-center">
               <div className="w-4 h-4 overflow-hidden rounded-full bg-neutral-300 shrink-0">
                 <img
+                  loading="lazy"
                   src={record.author.avatar}
                   style={
                     isAuthorLabeled ? { filter: "blur(1.5px)" } : undefined
@@ -296,6 +297,7 @@ function ImageEmbed({
     case 1:
       return (
         <img
+          loading="lazy"
           src={content.images[0].thumb}
           alt={content.images[0].alt}
           className="w-full rounded-lg overflow-hidden object-cover h-auto max-h-[1000px]"
@@ -318,6 +320,7 @@ function ImageEmbed({
       return (
         <div className="flex gap-1 rounded-lg overflow-hidden w-full aspect-[2/1]">
           <img
+            loading="lazy"
             src={content.images[0].thumb}
             alt={content.images[0].alt}
             className="flex-[3] object-cover rounded-sm"
@@ -325,6 +328,7 @@ function ImageEmbed({
           <div className="flex flex-col gap-1 flex-[2]">
             {content.images.slice(1).map((image, i) => (
               <img
+                loading="lazy"
                 key={i}
                 src={image.thumb}
                 alt={image.alt}
@@ -339,6 +343,7 @@ function ImageEmbed({
         <div className="grid grid-cols-2 gap-1 rounded-lg overflow-hidden">
           {content.images.map((image, i) => (
             <img
+              loading="lazy"
               key={i}
               src={image.thumb}
               alt={image.alt}
@@ -380,6 +385,7 @@ function ExternalEmbed({
     >
       {content.external.thumb && (
         <img
+          loading="lazy"
           src={content.external.thumb}
           className="aspect-[1.91/1] object-cover"
           alt="thumbnail"
@@ -419,6 +425,7 @@ function GenericWithImageEmbed({
       <div className="flex gap-2.5 items-center">
         {image ? (
           <img
+            loading="lazy"
             src={image}
             alt={title}
             className="w-8 h-8 rounded-md bg-neutral-300 shrink-0"
@@ -457,6 +464,7 @@ function VideoEmbed({ content }: { content: AppBskyEmbedVideo.View }) {
       style={{ aspectRatio: `${aspectRatio} / 1` }}
     >
       <img
+        loading="lazy"
         src={content.thumbnail}
         alt={content.alt || "video thumbnail"}
         className="object-cover size-full"
@@ -486,6 +494,7 @@ function StarterPackEmbed({
       className="w-full rounded-lg overflow-hidden border flex flex-col items-stretch"
     >
       <img
+        loading="lazy"
         src={imageUri}
         className="aspect-[1.91/1] object-cover"
         alt="starter pack"

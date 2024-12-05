@@ -2,16 +2,23 @@
 
 import { useEffect, useState } from "react";
 import swr from "swr";
-import { getPostThread, PostThreadParams } from "./api/index.js";
+import {
+  getPostThread,
+  PostThreadConfig,
+  PostThreadParams,
+} from "./api/index.js";
 
 // Avoids an error when used in the pages directory where useSWR might be in `default`.
 const useSWR = ((swr as any).default as typeof swr) || swr;
 
-async function fetcher([params]: [PostThreadParams, RequestInit]) {
-  const res = await getPostThread({
-    did: params.did,
-    rkey: params.rkey,
-  });
+async function fetcher([params, config]: [PostThreadParams, PostThreadConfig]) {
+  const res = await getPostThread(
+    {
+      did: params.did,
+      rkey: params.rkey,
+    },
+    config
+  );
   return res;
 
   // // We return null in case `json.data` is undefined, that way we can check for "loading" by
@@ -30,17 +37,13 @@ async function fetcher([params]: [PostThreadParams, RequestInit]) {
  */
 export const usePostThread = (
   params: PostThreadParams,
-  fetchOptions?: RequestInit
+  config?: PostThreadConfig
 ) => {
-  const { isLoading, data, error } = useSWR(
-    () => [params, fetchOptions],
-    fetcher,
-    {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
-      shouldRetryOnError: false,
-    }
-  );
+  const { isLoading, data, error } = useSWR(() => [params, config], fetcher, {
+    revalidateIfStale: false,
+    revalidateOnFocus: false,
+    shouldRetryOnError: false,
+  });
 
   return {
     // If data is `undefined` then it might be the first render where SWR hasn't started doing
