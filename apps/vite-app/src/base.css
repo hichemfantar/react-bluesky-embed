@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 body {
-  @apply bg-black;
+  @apply bg-black dark:text-gray-100;
+}
+
+html {
+  color-scheme: dark;
 }

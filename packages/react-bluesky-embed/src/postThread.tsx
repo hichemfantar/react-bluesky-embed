@@ -17,11 +17,13 @@ type PostThreadContentProps = Omit<PostThreadProps, "fallback">;
 const PostThreadContent = async ({
   params,
   theme = "light",
+  config,
   onError,
+  hidePost,
 }: PostThreadContentProps) => {
   let error;
   const postThread = params
-    ? await getPostThread(params).catch((err) => {
+    ? await getPostThread(params, config).catch((err) => {
         if (onError) {
           error = onError(err);
         } else {
@@ -42,6 +44,7 @@ const PostThreadContent = async ({
         theme={theme}
         postThread={postThread}
         key={JSON.stringify(params)}
+        hidePost={hidePost}
       />
     </>
   );

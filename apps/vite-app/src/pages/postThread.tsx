@@ -6,15 +6,22 @@ import {
   PostThreadSkeleton,
   Theme,
 } from "react-bluesky-embed";
-import { getPostThread, PostThreadParams } from "react-bluesky-embed/api";
+import {
+  getPostThread,
+  PostThreadConfig,
+  PostThreadParams,
+} from "react-bluesky-embed/api";
 import { useSearchParams } from "react-router-dom";
 import useSWR from "swr";
 
-async function fetcher([params]: [PostThreadParams]) {
-  const res = await getPostThread({
-    did: params.did,
-    rkey: params.rkey,
-  });
+async function fetcher([params, config]: [PostThreadParams, PostThreadConfig]) {
+  const res = await getPostThread(
+    {
+      did: params.did,
+      rkey: params.rkey,
+    },
+    config
+  );
   return res;
 }
 
@@ -28,7 +35,7 @@ const DEFAULT_URI =
 
 export const PostThreadPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>("dark");
   const [pastedUri, setPastedUri] = useState(DEFAULT_URI);
   const [resolvedUri, setResolvedUri] = useState(DEFAULT_URI);
   const searchParamsObj: SearchParamsObj = Object.fromEntries(
@@ -46,6 +53,9 @@ export const PostThreadPage = () => {
       {
         did: searchParamsObj.did,
         rkey: searchParamsObj.rkey,
+      },
+      {
+        depth: 6,
       },
     ],
     fetcher,

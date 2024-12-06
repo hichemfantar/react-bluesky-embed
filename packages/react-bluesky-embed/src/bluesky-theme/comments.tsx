@@ -11,7 +11,7 @@ export const CommentSection = ({ thread }: { thread: PostThread }) => {
   const postUrl = `https://bsky.app/profile/${did}/post/${rkey}`;
 
   const [error, setError] = useState<string | null>(null);
-  const [visibleCount, setVisibleCount] = useState(3);
+  const [visibleCount, setVisibleCount] = useState(4);
 
   if (error) {
     return <p className="text-center">{error}</p>;
@@ -21,15 +21,11 @@ export const CommentSection = ({ thread }: { thread: PostThread }) => {
     return <p className="text-center">Loading comments...</p>;
   }
 
-  if (!thread.replies || thread.replies.length === 0) {
-    return <div />;
-  }
-
   const showMore = () => {
-    setVisibleCount((prevCount) => prevCount + 5);
+    setVisibleCount((prevCount) => prevCount + 4);
   };
 
-  const sortedReplies = thread.replies.sort(sortByLikes);
+  const sortedReplies = thread.replies?.sort(sortByLikes) ?? [];
 
   return (
     <div>
@@ -86,8 +82,8 @@ export const CommentSection = ({ thread }: { thread: PostThread }) => {
         </a>{" "}
         to join the conversation.
       </p>
-      <hr className="mt-2" />
-      <div className="mt-2 space-y-4">
+      <hr className="my-2" />
+      <div className="space-y-4">
         {sortedReplies.slice(0, visibleCount).map((reply) => {
           if (!AppBskyFeedDefs.isThreadViewPost(reply)) return null;
           return <Comment key={reply.post.uri} comment={reply} />;
@@ -95,7 +91,7 @@ export const CommentSection = ({ thread }: { thread: PostThread }) => {
         {visibleCount < sortedReplies.length && (
           <button
             onClick={showMore}
-            className="text-sm text-blue-500 underline"
+            className="w-full text-sm text-blue-400 p-2 px-4 border rounded-lg hover:bg-[#2e3f51] transition"
           >
             Show more comments
           </button>
@@ -112,8 +108,8 @@ const Comment = ({ comment }: { comment: AppBskyFeedDefs.ThreadViewPost }) => {
   if (!AppBskyFeedPost.isRecord(comment.post.record)) return null;
 
   return (
-    <div className="my-4 text-base">
-      <div className="flex max-w-xl flex-col gap-2">
+    <div className="text-base space-y-4">
+      <div className="flex xmax-w-xl flex-col gap-2">
         <a
           className="flex flex-row items-center gap-2 hover:underline"
           href={`https://bsky.app/profile/${author.did}`}
@@ -151,17 +147,18 @@ const Comment = ({ comment }: { comment: AppBskyFeedDefs.ThreadViewPost }) => {
         >
           {/* <p>{comment.post.record.text}</p> */}
           <PostContent record={comment.post.record} isComment />
-          <Embed
-            key={comment.post.uri}
-            content={comment.post.embed}
-            labels={comment.post.labels}
-          />
-
+          <div className="max-w-xl">
+            <Embed
+              key={comment.post.uri}
+              content={comment.post.embed}
+              labels={comment.post.labels}
+            />
+          </div>
           <Actions post={comment.post} />
         </a>
       </div>
       {comment.replies && comment.replies.length > 0 && (
-        <div className=" border-l-2  pl-2">
+        <div className="space-y-4 border-l-2  pl-2 dark:hover:border-[#4c6784] hover:border-[#3b5169] transition">
           {comment.replies.sort(sortByLikes).map((reply) => {
             if (!AppBskyFeedDefs.isThreadViewPost(reply)) return null;
             return <Comment key={reply.post.uri} comment={reply} />;

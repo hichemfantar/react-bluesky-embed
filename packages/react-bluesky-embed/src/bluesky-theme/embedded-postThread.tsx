@@ -6,12 +6,24 @@ import { Theme } from "../utils.js";
 type Props = {
   postThread: PostThread;
   theme?: Theme;
+  hidePost?: boolean;
 };
 
-export const EmbeddedPostThread = ({ postThread, theme = "light" }: Props) => {
+export const EmbeddedPostThread = ({
+  postThread,
+  theme = "light",
+  hidePost,
+}: Props) => {
   // useMemo does nothing for RSC but it helps when the component is used in the client (e.g by SWR)
   // const postThread = useMemo(() => enrichPostThread(t), [t])
   const thread = postThread;
 
-  return <Post theme={theme} thread={thread} key={thread.post.uri} />;
+  return (
+    <Post
+      theme={theme}
+      thread={thread}
+      key={thread.post.uri}
+      hidePost={hidePost}
+    />
+  );
 };

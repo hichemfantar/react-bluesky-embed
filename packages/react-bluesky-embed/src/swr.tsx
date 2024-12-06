@@ -15,6 +15,7 @@ export type PostThreadProps = Omit<PostThreadCoreProps, "params"> & {
 } & {
   params: PostThreadParams;
   theme?: Theme;
+  hidePost?: boolean;
   config?: PostThreadConfig;
 };
 
@@ -24,6 +25,7 @@ export const PostThread = ({
   fallback = <PostThreadSkeleton theme={theme} />,
   config,
   onError,
+  hidePost,
 }: PostThreadProps) => {
   const { data, error, isLoading } = usePostThread(params, config);
 
@@ -35,7 +37,7 @@ export const PostThread = ({
 
   return (
     <>
-      <EmbeddedPostThread theme={theme} postThread={data} />
+      <EmbeddedPostThread theme={theme} postThread={data} hidePost={hidePost} />
     </>
   );
 };

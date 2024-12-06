@@ -526,6 +526,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+#bluesky-embed .my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
 #bluesky-embed .ml-1 {
   margin-left: 0.25rem;
 }
@@ -617,6 +621,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }
 #bluesky-embed .h-full {
   height: 100%;
+}
+#bluesky-embed .h-2 {
+  height: 0.5rem;
 }
 #bluesky-embed .max-h-\[1000px\] {
   max-height: 1000px;
@@ -726,6 +733,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }
 #bluesky-embed .gap-5 {
   gap: 1.25rem;
+}
+#bluesky-embed .gap-y-4 {
+  row-gap: 1rem;
 }
 #bluesky-embed :is(.space-x-2 > :not([hidden]) ~ :not([hidden])) {
   --tw-space-x-reverse: 0;
@@ -891,6 +901,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 #bluesky-embed .font-semibold {
   font-weight: 600;
 }
+#bluesky-embed .font-medium {
+  font-weight: 500;
+}
 #bluesky-embed .leading-5 {
   line-height: 1.25rem;
 }
@@ -930,6 +943,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 #bluesky-embed .text-textLight {
   --tw-text-opacity: 1;
   color: rgb(66 87 108 / var(--tw-text-opacity, 1));
+}
+#bluesky-embed .text-blue-400 {
+  --tw-text-opacity: 1;
+  color: rgb(96 165 250 / var(--tw-text-opacity, 1));
 }
 #bluesky-embed .underline {
   text-decoration-line: underline;
@@ -975,6 +992,33 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   --tw-scale-y: 1.1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+#bluesky-embed .hover\:border-\[\#2e3f519a\]:hover {
+  border-color: #2e3f519a;
+}
+#bluesky-embed .hover\:border-\[\#d4dbe2\]:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(212 219 226 / var(--tw-border-opacity, 1));
+}
+#bluesky-embed .hover\:border-\[\#2e3f51\]:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(46 63 81 / var(--tw-border-opacity, 1));
+}
+#bluesky-embed .hover\:border-\[\#36495d\]:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(54 73 93 / var(--tw-border-opacity, 1));
+}
+#bluesky-embed .hover\:border-\[\#40556c\]:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(64 85 108 / var(--tw-border-opacity, 1));
+}
+#bluesky-embed .hover\:border-\[\#4c6784\]:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(76 103 132 / var(--tw-border-opacity, 1));
+}
+#bluesky-embed .hover\:border-\[\#3b5169\]:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(59 81 105 / var(--tw-border-opacity, 1));
+}
 #bluesky-embed .hover\:bg-neutral-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(245 245 245 / var(--tw-bg-opacity, 1));
@@ -982,6 +1026,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 #bluesky-embed .hover\:bg-neutral-50:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(250 250 250 / var(--tw-bg-opacity, 1));
+}
+#bluesky-embed .hover\:bg-\[\#2e3f51\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(46 63 81 / var(--tw-bg-opacity, 1));
 }
 #bluesky-embed .hover\:underline:hover {
   text-decoration-line: underline;
@@ -1041,6 +1089,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 #bluesky-embed .dark\:text-textDark:where(#bluesky-embed.dark, #bluesky-embed.dark *) {
   --tw-text-opacity: 1;
   color: rgb(140 158 178 / var(--tw-text-opacity, 1));
+}
+#bluesky-embed .dark\:hover\:border-\[\#4c6784\]:hover:where(#bluesky-embed.dark, #bluesky-embed.dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(76 103 132 / var(--tw-border-opacity, 1));
 }
 #bluesky-embed .dark\:hover\:bg-\[\#161e27f3\]:hover:where(#bluesky-embed.dark, #bluesky-embed.dark *) {
   background-color: #161e27f3;
