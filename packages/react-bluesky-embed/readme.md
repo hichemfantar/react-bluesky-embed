@@ -21,19 +21,21 @@ npm i react-bluesky-embed
 ## Usage
 
 ```tsx
-<PostThread
-  params={{
-    did: "did:plc:gru662w3omynujkgwebgeeof",
-    rkey: "3lbirib5xnc2u",
-  }}
-  theme="dark"
-  // set the depth to 1+ to show replies
-  config={{
-    depth: 6,
-  }}
-  // only show the replies
-  hidePost={false}
-/>
+<div className="max-w-[672px]">
+  <PostThread
+    params={{
+      did: "did:plc:gru662w3omynujkgwebgeeof",
+      rkey: "3lbirib5xnc2u",
+    }}
+    theme="dark"
+    // set the depth to 1+ to show replies
+    config={{
+      depth: 6,
+    }}
+    // only show the replies
+    hidePost={false}
+  />
+</div>
 ```
 
 ## Contributing
