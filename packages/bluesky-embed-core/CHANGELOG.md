@@ -1,5 +1,11 @@
 # bluesky-embed-core
 
+## 0.4.0
+
+### Minor Changes
+
+- better comment support
+
 ## 0.3.0
 
 ### Minor Changes

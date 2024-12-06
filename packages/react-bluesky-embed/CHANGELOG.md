@@ -1,5 +1,16 @@
 # react-bluesky-embed
 
+## 0.5.0
+
+### Minor Changes
+
+- better comment support
+
+### Patch Changes
+
+- Updated dependencies
+  - bluesky-embed-core@0.4.0
+
 ## 0.4.0
 
 ### Minor Changes
